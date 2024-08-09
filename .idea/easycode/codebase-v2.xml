@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/src/main/java/com/hq/siiutest/config/SiiuStyle.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/com/hq/siiutest/controller/gui/GuiMainController.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/com/hq/siiutest/controller/SiiuController.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/com/hq/siiutest/controller/TestController.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/com/hq/siiutest/models/Row.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/com/hq/siiutest/models/SiiuTest.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/com/hq/siiutest/services/SiiuService.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/com/hq/siiutest/tools/SiiuParse.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/com/hq/siiutest/MainApp.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/java/module-info.java;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/resources/com/hq/siiutest/config/logback.xml;C:/Users/vgaspar/IdeaProjects/siiu-test/src/main/resources/com/hq/siiutest/statics/style.css;C:/Users/vgaspar/IdeaProjects/siiu-test/pom.xml;C:/Users/vgaspar/IdeaProjects/siiu-test/tests.json" />
+  </component>
+</project>

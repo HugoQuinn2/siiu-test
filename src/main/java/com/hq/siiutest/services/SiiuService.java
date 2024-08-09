@@ -1,10 +1,14 @@
 package com.hq.siiutest.services;
 
 import com.fazecast.jSerialComm.SerialPort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class SiiuService {
+    private static final Logger logger = LoggerFactory.getLogger(SiiuService.class);
+
     private String com;
     private int baud;
     private int dataSize;
@@ -34,14 +38,12 @@ public class SiiuService {
     public String command(byte[] command) {
         if (connect()) {
             try {
-
                 port.getOutputStream().write(command);
                 port.getOutputStream().flush();
 
                 return readBuffer(port);
-
             } catch (Exception e) {
-                System.err.println("Error Command: " + e.getMessage());
+                logger.error("Error en comando: " + command + "/" + e.getMessage());
                 return null;
             } finally {
                 port.closePort();
@@ -56,7 +58,7 @@ public class SiiuService {
 
         while ((System.currentTimeMillis() - System.currentTimeMillis()) < timeout) {
             if (port.getInputStream().available() > 0) {
-                numRead = port.getInputStream().read(readBuffer);
+                numRead = port.readBytes(readBuffer, readBuffer.length);
                 if (numRead > 0) {
                     return new String(readBuffer, 0, numRead);
                 }
@@ -64,7 +66,7 @@ public class SiiuService {
         }
 
         if (numRead == 0) {
-            System.out.println("No se recibieron datos dentro del tiempo de espera.");
+            logger.error("No se obtuvo respuesta");
         }
 
         return null;

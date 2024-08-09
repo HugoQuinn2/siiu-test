@@ -57,6 +57,11 @@ public class SiiuParse {
             result ^= num;
         }
         String checkSum = Integer.toHexString(result).toUpperCase();
+
+        if (checkSum.length() == 2) {
+            return checkSum;
+        }
+
         return String.format("%02d", Integer.parseInt(checkSum));
     }
 

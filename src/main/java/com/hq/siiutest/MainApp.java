@@ -1,28 +1,33 @@
 package com.hq.siiutest;
 
-import com.hq.siiutest.config.SiiuStyle;
-import com.hq.siiutest.controller.SiiuController;
-import com.hq.siiutest.models.Row;
-import com.hq.siiutest.services.SiiuService;
-import com.hq.siiutest.tools.SiiuParse;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
+public class MainApp extends Application {
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-public class MainApp {
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        logger.info("Ejecutando Aplicacion");
+
+        FXMLLoader GuiMain = new FXMLLoader(MainApp.class.getResource("/com/hq/siiutest/statics/GuiMain.fxml"));
+        Scene scene = new Scene(GuiMain.load(), 1000, 550);
+
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Siiu Tests");
+        primaryStage.setMinWidth(1000);
+        primaryStage.setMinHeight(550);
+        primaryStage.setMaxWidth(1000);
+        primaryStage.setMaxHeight(550);
+
+        primaryStage.show();
+    }
 
     public static void main(String[] args) {
-        SiiuController siiuController = new SiiuController("COM5");
-        List<Row> test = new ArrayList<>();
-        test.add(new Row("V01", "1"));
-        test.add(new Row("V02", "2"));
-        test.add(new Row("V02", "2"));
-        test.add(new Row("V02", "2"));
-        test.add(new Row("V02", "2"));
-        test.add(new Row("V02", "2"));
-
-        siiuController.style(SiiuStyle.COLUMNS_BLACK);
-        siiuController.showRows(test);
-
+        launch(args);
     }
 }

@@ -9,6 +9,10 @@ public class Row {
         this.time = time;
     }
 
+    public Row() {
+
+    }
+
     public String getName() {
         return name;
     }
