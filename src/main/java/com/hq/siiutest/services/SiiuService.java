@@ -1,20 +1,22 @@
 package com.hq.siiutest.services;
 
 import com.fazecast.jSerialComm.SerialPort;
+import javafx.scene.control.Alert;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class SiiuService {
     private static final Logger logger = LoggerFactory.getLogger(SiiuService.class);
 
-    private String com;
-    private int baud;
-    private int dataSize;
+    private final String com;
+    private final int baud;
+    private final int dataSize;
     private SerialPort port;
 
-    private int timeout;
+    private final int timeout;
 
     public SiiuService(String com, int baud, int dataSize){
         this.com = com;
@@ -43,11 +45,16 @@ public class SiiuService {
 
                 return readBuffer(port);
             } catch (Exception e) {
-                logger.error("Error en comando: " + command + "/" + e.getMessage());
+                logger.error("Error en comando: " + Arrays.toString(command), e);
                 return null;
             } finally {
                 port.closePort();
             }
+        } else {
+            alertError(
+                    "Error de Comunicación " + com,
+                    "No se pudo establecer conexion al puerto."
+            );
         }
         return null;
     }
@@ -56,19 +63,30 @@ public class SiiuService {
         byte[] readBuffer = new byte[1024];
         int numRead = 0;
 
-        while ((System.currentTimeMillis() - System.currentTimeMillis()) < timeout) {
-            if (port.getInputStream().available() > 0) {
-                numRead = port.readBytes(readBuffer, readBuffer.length);
-                if (numRead > 0) {
-                    return new String(readBuffer, 0, numRead);
-                }
+        if (port.getInputStream().available() > 0) {
+            numRead = port.readBytes(readBuffer, readBuffer.length);
+            if (numRead > 0) {
+                return new String(readBuffer, 0, numRead);
             }
         }
 
         if (numRead == 0) {
-            logger.error("No se obtuvo respuesta");
+            logger.info("No se obtuvo respuesta");
+            alertError(
+                    "Error de Comunicación " + com,
+                    "No se obtuvo respuesta del equipo."
+            );
         }
 
         return null;
     }
+
+    private void alertError(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }

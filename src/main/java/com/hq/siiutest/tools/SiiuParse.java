@@ -18,8 +18,6 @@ public class SiiuParse {
     }
 
     public String rows2Hex(List<Row> rows) {
-        List<String> output = new ArrayList<>();
-
         List<String> view = getView(rows);
         String size = Integer.toHexString(view.size() + 1).toUpperCase();
 
@@ -30,7 +28,7 @@ public class SiiuParse {
         view.addFirst(size);
         view.addLast(getCheckSum(view));
 
-        output.addAll(view);
+        List<String> output = new ArrayList<>(view);
         output.addFirst("02");
         output.addLast("03");
 

@@ -1,45 +1,39 @@
 package com.hq.siiutest.controller.gui;
 
 import com.fazecast.jSerialComm.SerialPort;
-import com.hq.siiutest.config.SiiuStyle;
 import com.hq.siiutest.controller.SiiuController;
 import com.hq.siiutest.controller.TestController;
 import com.hq.siiutest.models.SiiuTest;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
 
 public class GuiMainController {
     @FXML
-    private ComboBox cbxComs;
+    private ComboBox<String> cbxComs;
     @FXML
     private ListView<String> lstTestsView;
-    @FXML
-    private Button btnTest;
 
     private SiiuController siiuController;
-    private TestController testController;
     private List<SiiuTest> siiuTests;
-    private SerialPort[] serialPorts;
 
-    private static final Logger logger = LoggerFactory.getLogger(GuiMainController.class);
+//    private static final Logger logger = LoggerFactory.getLogger(GuiMainController.class);
 
     @FXML
     public void initialize() {
-        testController = new TestController();
+        TestController testController = new TestController();
         siiuTests = testController.getSiiuTests();
 
-        serialPorts = SerialPort.getCommPorts();
+        SerialPort[] serialPorts = SerialPort.getCommPorts();
         String[] portsName = new String[serialPorts.length];
-        for (int i = 0 ; i < serialPorts.length ; i++) {
+        for (int i = 0; i < serialPorts.length ; i++) {
             portsName[i] = serialPorts[i].getSystemPortName();
         }
 
@@ -61,20 +55,17 @@ public class GuiMainController {
     }
 
     public void onBtnTests() {
-        siiuController = new SiiuController(cbxComs.getValue().toString());
-        siiuController.shotTestRows(siiuTests);
+        siiuController = new SiiuController(cbxComs.getValue());
+        siiuController.showTestRows(siiuTests);
     }
 
     public void onBtnTest() {
-        siiuController = new SiiuController(cbxComs.getValue().toString());
+        siiuController = new SiiuController(cbxComs.getValue());
         String test = lstTestsView.getSelectionModel().getSelectedItem();
         if (test != null) {
             SiiuTest siiuTest = getSiiuTestByName(test);
             if (siiuTest != null) {
-                logger.info("Ejecutando prueba: " + siiuTest.getName());
-                SiiuStyle style = siiuController.getSiiuStyle(siiuTest.getStyle());
-                siiuController.style(style);
-                siiuController.showRows(siiuTest.getRows());
+                siiuController.showTestRows(siiuTest);
             }
         }
     }
