@@ -7,11 +7,13 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 public class MainApp extends Application {
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         logger.info("Ejecutando Aplicacion");
 
         FXMLLoader GuiMain = new FXMLLoader(MainApp.class.getResource("/com/hq/siiutest/statics/GuiMain.fxml"));
