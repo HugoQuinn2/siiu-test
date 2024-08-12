@@ -8,22 +8,7 @@
         "time": "01"
       }
     ],
-    "cooldTime": 5
-  },
-  {
-    "name" : "2 datos unico Renglones Negros",
-    "style" : "ROWS_BLACK",
-    "rows" : [
-      {
-        "name":"A01",
-        "time": "01"
-      },
-      {
-        "name":"B02",
-        "time": "02"
-      }
-    ],
-    "cooldTime": 5
+    "cooldTime": 8
   },
   {
     "name" : "3 datos unico Renglones Negros",
@@ -42,34 +27,11 @@
         "time": "03"
       }
     ],
-    "cooldTime": 5
+    "cooldTime": 10
   },
   {
-    "name" : "4 datos unico Renglones Rojos",
-    "style" : "ROWS_RED",
-    "rows" : [
-      {
-        "name":"A01",
-        "time": "01"
-      },
-      {
-        "name":"B02",
-        "time": "02"
-      },
-      {
-        "name":"C03",
-        "time": "03"
-      },
-      {
-        "name":"D03",
-        "time": "04"
-      }
-    ],
-    "cooldTime": 5
-  },
-  {
-    "name" : "5 datos unico Renglones Rojos",
-    "style" : "ROWS_RED",
+    "name" : "6 datos unico Renglones Negros",
+    "style" : "ROWS_BLACK",
     "rows" : [
       {
         "name":"A01",
@@ -90,9 +52,13 @@
       {
         "name":"E05",
         "time": "05"
+      },
+      {
+        "name":"F06",
+        "time": "06"
       }
     ],
-    "cooldTime": 5
+    "cooldTime": 20
   },
   {
     "name" : "6 datos unico Renglones Rojos",
@@ -122,7 +88,69 @@
         "name":"F06",
         "time": "06"
       }
+      ],
+      "cooldTime": 20
+    },
+  {
+    "name" : "6 datos unico Columnas Rojas",
+    "style" : "COLUMNS_RED",
+    "rows" : [
+      {
+        "name":"A01",
+        "time": "01"
+      },
+      {
+        "name":"B02",
+        "time": "02"
+      },
+      {
+        "name":"C03",
+        "time": "03"
+      },
+      {
+        "name":"D04",
+        "time": "04"
+      },
+      {
+        "name":"E05",
+        "time": "05"
+      },
+      {
+        "name":"F06",
+        "time": "06"
+      }
     ],
-    "cooldTime": 5
+    "cooldTime": 20
+  },
+  {
+    "name" : "6 datos unico Columnas Negras",
+    "style" : "COLUMNS_BLACK",
+    "rows" : [
+      {
+        "name":"A01",
+        "time": "01"
+      },
+      {
+        "name":"B02",
+        "time": "02"
+      },
+      {
+        "name":"C03",
+        "time": "03"
+      },
+      {
+        "name":"D04",
+        "time": "04"
+      },
+      {
+        "name":"E05",
+        "time": "05"
+      },
+      {
+        "name":"F06",
+        "time": "06"
+      }
+    ],
+    "cooldTime": 1
   }
   ]

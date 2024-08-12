@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class SiiuService {
@@ -22,7 +23,7 @@ public class SiiuService {
         this.com = com;
         this.baud = baud;
         this.dataSize = dataSize;
-        this.timeout = 100;
+        this.timeout = 1000;
     }
 
     private boolean connect(){
@@ -43,6 +44,7 @@ public class SiiuService {
                 port.getOutputStream().write(command);
                 port.getOutputStream().flush();
 
+                Thread.sleep(350);
                 return readBuffer(port);
             } catch (Exception e) {
                 logger.error("Error en comando: " + Arrays.toString(command), e);
@@ -59,14 +61,15 @@ public class SiiuService {
         return null;
     }
 
-    private String readBuffer(SerialPort port) throws IOException {
-        byte[] readBuffer = new byte[1024];
+    private String readBuffer(SerialPort port) throws IOException{
+        byte[] readBuffer = new byte[5];
         int numRead = 0;
 
         if (port.getInputStream().available() > 0) {
             numRead = port.readBytes(readBuffer, readBuffer.length);
             if (numRead > 0) {
-                return new String(readBuffer, 0, numRead);
+                logger.info("Respuesta de comando: " + Arrays.toString(readBuffer));
+                return Arrays.toString(readBuffer);
             }
         }
 

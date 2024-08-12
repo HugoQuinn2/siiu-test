@@ -39,6 +39,7 @@ public class SiiuController {
         }
 
         String command = siiuParse.rows2Hex(rows);
+        logger.info("Ejecutando comando: " + command);
         byte[] bytesCommand = siiuParse.hex2ByteArray(command);
 
         return siiuService.command(bytesCommand);
@@ -61,6 +62,7 @@ public class SiiuController {
         try {
             SiiuStyle style = getSiiuStyle(siiuTest.getStyle());
             if ( style(style) != null ) {
+                Thread.sleep(100);
                 return showRows(siiuTest.getRows()) != null;
             }
             return false;
@@ -73,6 +75,7 @@ public class SiiuController {
     public String style(SiiuStyle style) {
         logger.info("Ejecutando estilo: " + style);
         byte[] bytesCommand = siiuParse.hex2ByteArray(style.getCommand());
+        logger.info("Ejecutando comando: " + style.getCommand());
         return siiuService.command(bytesCommand);
     }
 
