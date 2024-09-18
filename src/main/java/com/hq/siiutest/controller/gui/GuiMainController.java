@@ -33,12 +33,18 @@ public class GuiMainController {
 
         SerialPort[] serialPorts = SerialPort.getCommPorts();
         String[] portsName = new String[serialPorts.length];
+
         for (int i = 0; i < serialPorts.length ; i++) {
             portsName[i] = serialPorts[i].getSystemPortName();
         }
 
-        cbxComs.getItems().addAll(portsName);
-        cbxComs.setValue(portsName[0]);
+        if (serialPorts.length != 0){
+            cbxComs.getItems().addAll(portsName);
+            cbxComs.setValue(portsName[0]);
+        } else {
+            cbxComs.getItems().add("None");
+            cbxComs.setValue("None");
+        }
 
         makeTestsView();
     }
