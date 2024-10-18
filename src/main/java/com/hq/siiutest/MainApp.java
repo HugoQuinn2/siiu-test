@@ -1,5 +1,6 @@
 package com.hq.siiutest;
 
+import io.github.palexdev.materialfx.MFXResourcesLoader;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +19,9 @@ public class MainApp extends Application {
 
         FXMLLoader GuiMain = new FXMLLoader(MainApp.class.getResource("/com/hq/siiutest/statics/GuiMain.fxml"));
         Scene scene = new Scene(GuiMain.load(), 1000, 550);
+
+        scene.getStylesheets().add(MFXResourcesLoader.load("css/MFXButton.css"));
+        scene.getStylesheets().add(MFXResourcesLoader.load("css/MFXComboBox.css"));
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Siiu Tests");

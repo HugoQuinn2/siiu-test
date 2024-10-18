@@ -7,6 +7,7 @@ module com.hq.siiutest {
     requires org.slf4j;
     requires ch.qos.logback.classic;
     requires ch.qos.logback.core;
+    requires MaterialFX;
 
 
     exports com.hq.siiutest;
